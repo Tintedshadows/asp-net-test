@@ -1,0 +1,27 @@
+﻿@model Vstore1.ViewModels.RandomMovieViewModel
+
+@{
+    ViewBag.Title = "Random";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    @*
+        This make the title class change to popular if guest count is bigger than 1
+    *@
+    var classname = Model.Guests.Count > 1 ? "Popular" : null;
+}
+
+<h2 class="@classname">@Model.Movie.Name</h2>
+
+@if (Model.Guests.Count != 0)
+{
+<ul>
+
+    @foreach (var customer in Model.Guests)
+    {
+        <li>@customer.Fname</li>
+    }
+
+</ul>
+}else{
+    <h1>This movie has not been rented before.</h1>
+}
